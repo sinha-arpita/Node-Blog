@@ -73,17 +73,14 @@ PostRouter.delete("/:id",async(req,res)=>{
 
   PostRouter.put("/:id",async(req,res)=>{
     try{
-        const id =req.params.id;
-       
-       const post=req.body;
-       if(id && post.text && post.user_id){
-         const result= await postDb.update(id,post)
-         res.status(201).json(result)
-       } if(!id){
-        res.status(404).json({message: "The post with the specified ID does not exist." })
-       }
-       else{
-        res.status(400).json({errorMessage: "Please provide title and contents for the post." })  
+        const {text,user_id} =req.body
+        if(text,user_id){
+             const post= await postDb.update(req.params.id,req.body)
+             if(post){
+             res.status(200).json(post)
+         } 
+         } else{
+        res.status(400).json({errorMessage: "Please provide text and user_id for the post." })  
        }
 
     }
