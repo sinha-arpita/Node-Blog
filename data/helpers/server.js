@@ -8,10 +8,14 @@ const PostRouter=require("./PostRouter.js")
 server.use(express.json())
 
 
-server.use ("/api/users",middleware,UserRouter)
+server.use ("/api/users",mm,UserRouter)
+
+
+
+
 server.use("/api/posts",PostRouter)
 
-function middleware(req,res,next){
+function mm(req,res,next){
                
     console.log("##########",  req.body.name, "############")
          
